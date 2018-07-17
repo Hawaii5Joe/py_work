@@ -1,3 +1,5 @@
+#Doing some form work, can make it happen.
+
 ##USER INPUT VARIABLES
 # Using a single function, gather the following user input and store each item as a variable:
 # Purchaser name
