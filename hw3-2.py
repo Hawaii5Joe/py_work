@@ -1,3 +1,4 @@
+#Some fizzbuzz like hoops to jump thru, i can do it.
 
 #User input validation
 def get_starting_num():
