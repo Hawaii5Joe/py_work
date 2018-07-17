@@ -1,4 +1,4 @@
-
+#HANGMAN
 #animal variables/guess placeholder
 animal_to_guess = 'cow'
 empty_animal = ''
