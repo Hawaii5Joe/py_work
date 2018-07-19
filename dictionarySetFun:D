@@ -1,0 +1,49 @@
+#key value pairs 
+names = ['mark', 'henry', 'matthew', 'paul', 'robert',
+'joseph', 'carl', 'luke', 'mark', 'robert', 'joseph', 'carl',
+'michael', 'mark', 'henry', 'matthew']
+
+#5 women in tech
+names.extend(['may', 'jane', 'jane', 'karen', 'tiffany'])
+print(names)
+
+#blank dict placeholder
+name_counts = {}
+#for loop
+for x in names:
+    if x in name_counts:
+        name_counts[x] = name_counts[x]+1
+    else:
+        name_counts[x] = 1
+print(name_counts)
+print(max(name_counts.values()))
+max_value = max(name_counts.values())
+
+names_dict_list = list(name_counts.values())
+print(names_dict_list)
+max_index = names_dict_list.index(max_value)
+name_dict_keys = list(name_counts.keys())
+print(name_dict_keys[max_index])
+
+#Set fun, pulling out unique info - unions/intersections
+s1 = "For instance, on the planet Earth, man had always assumed that he was more intelligent than dolphins because he had achieved so much — the wheel, New York, wars and so on — whilst all the dolphins had ever done was muck about in the water having a good time. But conversely, the dolphins had always believed that they were far more intelligent than man — " \
+     "for precisely the same reasons."
+
+s2 = "The last ever dolphin message was misinterpreted as a surprisingly sophisticated attempt to do a double-backwards-somersault through a hoop whilst whistling the ‘Star Spangled Banner’, but in fact the message was this: " \
+     "So long and thanks for all the fish."
+
+#comparisons
+total_word_count = (len(set(s1.split(" "))))
+total_word_count2 = (len(set(s2.split(" "))))
+print('total word counts for s1 and s2, respectively,', total_word_count,total_word_count2)
+
+#the middle of the venn diagram
+print(len(set(s1.split(" ")).intersection(set(s2.split(" ")))))
+
+#opposite sides of the venn diagram
+print(len(set(s2.split(" ")).symmetric_difference(set(s1.split(" ")))))
+
+#stretch goal: remove punctuation
+remove_punc = set(s1.split(" "))
+remove_punc.difference_update(set('.'))
+print(remove_punc)
