@@ -1,0 +1,53 @@
+## Program to pull apart dictionaries, apply some methods, some math. Casual. 
+
+# open land time forgot txt
+#swap out line 3 for your own text file. 
+with open('C:/Users/n0233486/Downloads/land_time_forgot.txt') as f:
+# splitting text line by line
+    lines = f.read().lower().splitlines()
+    print(lines)
+# counting number of lines, and storing in variable
+    num_lines = len(lines)
+# returning number of lines in file
+    print('There are ', num_lines, 'lines in your file.')
+
+words = []
+for line in lines:
+    print(line)
+    innerWords = line.split(" ")
+    words.extend(innerWords)
+print(len(words))
+
+# Print a sentence using format with the total number of words and the unique number of words (hint: use a set)
+print('There are', len(set(words)),'unique words.')
+set_words = len(set(words))
+# Calculate the word count for each word. (hint: see the section "Counting with Dictionaries")
+letter_counts = {}
+for i in words:
+    if i in letter_counts:
+        letter_counts[i] = letter_counts[i] + 1
+    else:
+        letter_counts[i] = 1
+print(letter_counts)
+# Calculate the word with the maximum count (hint: use max (Links to an external site.)Links to an external site.)
+max_var = max(letter_counts, key=lambda x: letter_counts[x])
+print(max_var)
+print(letter_counts[max_var])
+# Get the minimum frequency (hint: use values (Links to an external site.)Links to an external site.)
+min_var = min(letter_counts, key=lambda x: letter_counts[x])
+print(min_var)
+min_var_count = letter_counts[min_var]
+print(min_var_count)
+# Store all of the words that have the minimum frequency in a list (hint: use a for loop and items (Links to an external site.)Links to an external site.)
+min_freq_list = []
+for i in letter_counts:
+    if letter_counts[i] == min_var_count:
+        min_freq_list.append(i)
+print(min_freq_list)
+
+
+# Print a sentence including the minimum word count and the number of words with that count
+
+# Print a sentence of the percentage of words that are unique in the book (hint: use :.1f in your format)
+unique_percentage = (set_words/(len(words)))
+print(unique_percentage *100)
