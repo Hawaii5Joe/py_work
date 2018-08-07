@@ -1,0 +1,48 @@
+##Lil program to calculate total cost of pizza meal, number of pizzas, and cost per head. Casual.
+
+import math
+#------------------------------------------------------------------------------------------------------------
+# Create the following static (unchanging) variables:
+pizza_cost = 15.99
+total_slices_per_pizza = 8
+tax_rate = .101
+tip_rate = .18
+delivery_fee = 3.99
+#------------------------------------------------------------------------------------------------------------
+#total number of pizzas to order
+def pizzas_to_order(slices):
+    #rounding the total number of pizzas needed
+    return math.ceil(slices / total_slices_per_pizza)
+
+#Total pizza cost
+def total_pizza_cost(total_pizzas_to_order):
+    #establishing base pizza cost
+    total_base_pizza_cost = (pizza_cost*total_pizzas_to_order)
+    #tip calc
+    tip = total_base_pizza_cost * tip_rate
+    #tax calc
+    tax = total_base_pizza_cost * tax_rate
+    #sum of all previous costs, returning total cost
+    return (total_base_pizza_cost + tip + tax + delivery_fee)
+
+#Cost per person
+def unit_cost(total_group_cost, people):
+    #total cost/people for avg cost
+    return total_group_cost/people
+#------------------------------------------------------------------------------------------------------------
+#Inputs/Function Calls
+people = int(input('Enter number of people eating?: '))
+slices = 0
+#for loop to ask for number of slices, and store into "slices" variable.
+for i in range(people):
+    slices += int(input('How many whole slices does person {} want to eat?: '.format(i+1)))
+
+#Print statments
+total_pizzas_to_order = pizzas_to_order(slices)
+print('You need','{:,.1f}'.format(total_pizzas_to_order),'pizzas.')
+
+total_group_cost = total_pizza_cost(total_pizzas_to_order)
+print('The total cost is','${:,.2f}'.format(total_group_cost))
+
+avg_cost_per_person = unit_cost(total_group_cost, people)
+print('Each person owes','${:,.2f}'.format(avg_cost_per_person))
