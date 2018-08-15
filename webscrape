@@ -1,0 +1,48 @@
+#First stab at scraping
+#variables
+# url - https://www.google.com/search?q=golf+r&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjMj9Kzk-PcAhVIllQKHUyNBXQQ_AUICygC&biw=1158&bih=895
+# tag - td
+# secondary tag - style
+# secondary identifier - width:25%;word-wrap:break-word
+# all a var - li
+import requests
+import csv
+from bs4 import BeautifulSoup
+
+
+def main():
+    url = input('your url here: ')
+    tag = input('your tag here: ')
+    secondary_tag = input('your secondary tag here: ')
+    secondary_identifier = input('your secondary identifier here: ')
+    all_a_var = input('What all_a_var do you want?: ')
+    scrape_output = scrape(url, tag, secondary_tag, secondary_identifier, all_a_var)
+    export(scrape_output)
+
+def scrape(url, tag, secondary_tag, secondary_identifier, all_a_var):
+    response = requests.get(url)
+    dir(response)
+    print(response.headers)
+    content = response.content
+    soup = BeautifulSoup(content, 'lxml')
+    # print (soup)
+    #Use beautifulsoup to pull a category of information from the page.
+    print(soup.prettify())
+    all_a = soup.find_all(all_a_var)
+    print (all_a)
+    data = {}
+    #Store it in a dictionary
+    all_a_https = soup.find_all(tag, {secondary_tag: secondary_identifier})
+    # for x in all_a_https:
+        # print(x.string)
+    return all_a_https
+
+def export(scrape_output):
+#export this dictionary to a csv file called scrape
+    file_name='scrape.csv'
+    with open('scrape.csv', 'w') as ofile:
+        writer = csv.writer(ofile)
+        for row in scrape_output:
+            writer.writerow(row)
+
+main()
